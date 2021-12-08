@@ -39,7 +39,7 @@ app.get('/todos/:id', async (req, res) => {
 app.post('/todos', async (req, res) => {
 	try {
 		const { description } = req.body
-		const newTodo = await pool.query(
+		await pool.query(
 			'INSERT INTO todo (description) VALUES ($1)',
 			[description]
 		)
@@ -54,7 +54,7 @@ app.put('/todos/:id', async (req, res) => {
 	try {
 		const { id } = req.params
 		const { description } = req.body
-		const updatedTodo = await pool.query(
+		await pool.query(
 			'UPDATE todo SET description = $1 WHERE todo_id = $2',
 			[description, id]
 		)
@@ -68,7 +68,7 @@ app.put('/todos/:id', async (req, res) => {
 app.delete('/todos/:id', async (req, res) => {
 	try {
 		const { id } = req.params
-		const deletedTodo = await pool.query(
+		await pool.query(
 			'DELETE FROM todo WHERE todo_id = $1',
 			[id]
 		)
