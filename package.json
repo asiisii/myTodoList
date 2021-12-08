@@ -1,7 +1,16 @@
 {
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "pg": "^8.7.1"
-  }
+	"engines": {
+		"node": "16.13.0",
+		"npm": "8.1.0"
+	},
+	"scripts": {
+		"start": "node index.js",
+		"heroku-postbuild": "cd client && npm i and npm run build"
+	},
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^10.0.0",
+		"express": "^4.17.1",
+		"pg": "^8.7.1"
+	}
 }

@@ -11,7 +11,7 @@ function App() {
 	}, [])
 
 	const getAllTodos = async () => {
-		const response = await fetch('http://localhost:5000/todos')
+		const response = await fetch('/todos')
 		const todoList = await response.json()
 		setTodos(todoList)
 	}

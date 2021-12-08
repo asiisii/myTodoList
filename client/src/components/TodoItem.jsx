@@ -10,7 +10,7 @@ const TodoItem = ({ id, description, getAllTodos }) => {
 
 	const deleteTodo = async e => {
 		e.preventDefault()
-		await fetch(`http://localhost:5000/todos/${id}`, {
+		await fetch(`/todos/${id}`, {
 			method: 'DELETE',
 		})
 		getAllTodos()

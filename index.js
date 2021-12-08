@@ -2,14 +2,19 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const pool = require('./db')
+const path = require('path')
+const PORT = process.env.PORT || 5000
 
 //middleware
 app.use(cors()) //this lets our local 5000 and 3000 to interact with each other
 app.use(express.json())
 
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'))
+}
+
 app.get('/todos', async (req, res) => {
 	try {
-		// const { description } = req.body
 		const allTodos = await pool.query('SELECT * FROM todo')
 
 		res.json(allTodos.rows)
@@ -74,4 +79,8 @@ app.delete('/todos/:id', async (req, res) => {
 	}
 })
 
-app.listen(5000, () => console.log('Server is running in port 5000'))
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname, 'client/build/index.html'))
+})
+
+app.listen(PORT, () => console.log(`Server is running in port ${PORT}`))
