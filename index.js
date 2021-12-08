@@ -9,7 +9,7 @@ app.use(express.json())
 
 app.get('/todos', async (req, res) => {
 	try {
-		const { description } = req.body
+		// const { description } = req.body
 		const allTodos = await pool.query('SELECT * FROM todo')
 
 		res.json(allTodos.rows)
