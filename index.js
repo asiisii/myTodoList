@@ -10,7 +10,7 @@ app.use(cors()) //this lets our local 5000 and 3000 to interact with each other
 app.use(express.json())
 
 if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('client/build'))
+	app.use(express.static(path.join(__dirname, 'client/build'))
 }
 
 app.get('/todos', async (req, res) => {
